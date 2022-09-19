@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #060606;
+  color: white;
+}
+
+.btn.loading {
+  @apply text-[0] leading-[0] align-top;
+}
+
+.btn.loading:before {
+  content: "";
+  @apply animate-spin w-4 h-4 rounded-full border-2 border-r-white border-transparent my-1 mx-auto block;
+}
+
+.btn:disabled {
+  @apply cursor-default opacity-80 pointer-events-none;
+}
