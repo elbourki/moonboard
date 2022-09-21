@@ -1,6 +1,7 @@
 import Router from "next/router";
 import { ReactElement, useContext } from "react";
 import { Web3AuthContext } from "../lib/web3auth";
+import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 
 export default function Layout({
   children,
@@ -37,16 +38,7 @@ export default function Layout({
             disabled={!web3auth}
             className="bg-dark-kinda border border-dark-almost rounded font-semibold px-2 py-1 text-sm flex items-center gap-1 btn"
           >
-            <svg width="1em" height="1em" viewBox="0 0 24 24">
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1"
-              ></path>
-            </svg>
+            <ArrowRightOnRectangleIcon width="1em" height="1em" />
             <span>Logout</span>
           </button>
         )}

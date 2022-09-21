@@ -2,6 +2,7 @@ import classNames from "classnames";
 import type { NextPage } from "next";
 import Router from "next/router";
 import { useContext, useState } from "react";
+import { handleErrors } from "../lib/fetch";
 import { withSessionSsr } from "../lib/iron";
 import { Web3AuthContext } from "../lib/web3auth";
 
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ token: idToken }),
-        })
+        }).then(handleErrors)
       )
       .then(() => Router.push("/dashboard"))
       .finally(() => setLoading(false));

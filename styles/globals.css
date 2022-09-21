@@ -13,9 +13,21 @@ body {
 
 .btn.loading:before {
   content: "";
-  @apply animate-spin w-4 h-4 rounded-full border-2 border-r-white border-transparent my-1 mx-auto block;
+  @apply animate-spin w-4 h-4 rounded-full border-2 border-r-white border-transparent mx-auto block;
 }
 
 .btn:disabled {
-  @apply cursor-default opacity-80 pointer-events-none;
+  @apply cursor-default opacity-50 pointer-events-none;
+}
+
+.PhoneInputInput {
+  @apply bg-dark-kinda border border-dark-almost rounded-r p-3 text-sm outline-none;
+}
+
+.PhoneInputCountry {
+  @apply bg-dark-kinda border border-r-0 border-dark-almost rounded-l py-3 px-5 text-sm !mr-0;
+}
+
+.PhoneInputCountrySelect {
+  @apply text-black;
 }

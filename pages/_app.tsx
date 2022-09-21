@@ -11,6 +11,7 @@ import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
 import { Web3AuthContext } from "../lib/web3auth";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 
 function App({ Component, pageProps }: AppProps) {
   const [instance, setInstance] = useState<Web3Auth | null>(null);
@@ -45,6 +46,7 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Moonboard - Real-time web3 alerts</title>
       </Head>
+      <Toaster />
       <Layout user={(pageProps as any).user}>
         <Component {...pageProps} />
       </Layout>
