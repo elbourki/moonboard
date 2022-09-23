@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       <h1 className="text-4xl font-extrabold mb-3">Real-time web3 alerts</h1>
       <p className="text-dark-soft text-lg">
         Monitor on-chain activity for events of interest and get instant alerts
-        delivered via email, text or messaging platforms.
+        delivered via email, text, and messaging platforms.
       </p>
       <button
         onClick={connect}

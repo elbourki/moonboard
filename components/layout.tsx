@@ -1,7 +1,8 @@
 import Router from "next/router";
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useEffect } from "react";
 import { Web3AuthContext } from "../lib/web3auth";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
+import { Blocks } from "./blocks";
 
 export default function Layout({
   children,
@@ -44,10 +45,11 @@ export default function Layout({
         )}
       </nav>
       <main className="flex-grow flex flex-col">{children}</main>
-      <footer className="p-4 flex justify-between">
+      <footer className="p-4 flex justify-between items-center">
         <span className="text-sm text-dark-soft">
           © {new Date().getFullYear()} Moonboard. All Rights Reserved.
         </span>
+        <Blocks />
       </footer>
     </div>
   );
