@@ -57,7 +57,7 @@ export const NewSubscription = ({
                 <Formik
                   initialValues={{
                     network: "moonbeam",
-                    topic: "democracy:started",
+                    topic: "democracy:Started",
                     channels: channels.map((c) => c.id),
                   }}
                   onSubmit={(values, { setSubmitting }) => {

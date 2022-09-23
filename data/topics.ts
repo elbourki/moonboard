@@ -1,30 +1,34 @@
 export const topics = [
   {
-    id: "democracy:proposed",
+    id: "democracy:Proposed",
     name: "Governance - New proposal",
   },
   {
-    id: "democracy:seconded",
+    id: "democracy:Seconded",
     name: "Governance - Proposal seconded",
   },
   {
-    id: "democracy:started",
-    name: "Governance - New referendum",
+    id: "democracy:Started",
+    name: "Governance - New standard referendum",
   },
   {
-    id: "democracy:passed",
+    id: "democracy:FastTracked",
+    name: "Governance - New fast-tracked referendum",
+  },
+  {
+    id: "democracy:Passed",
     name: "Governance - Referendum passed",
   },
   {
-    id: "democracy:executed",
+    id: "democracy:Executed",
     name: "Governance - Referendum executed",
   },
   {
-    id: "democracy:notpassed",
+    id: "democracy:NotPassed",
     name: "Governance - Referendum not passed",
   },
   {
-    id: "democracy:voted",
+    id: "democracy:Voted",
     name: "Governance - New referendum vote",
   },
 ];

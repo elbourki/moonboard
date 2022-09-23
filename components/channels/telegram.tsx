@@ -38,7 +38,7 @@ export default function ConnectTelegram() {
     script.setAttribute("data-telegram-login", "moonboard_bot");
     script.setAttribute("data-size", "medium");
     script.setAttribute("data-radius", "4");
-    script.setAttribute("data-request-access", "true");
+    script.setAttribute("data-request-access", "write");
     script.setAttribute("data-onauth", "onTelegramAuth(user)");
     ref.current!.appendChild(script);
   }, [router]);
