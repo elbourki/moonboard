@@ -16,9 +16,6 @@
     "@polkadot/api": "^9.4.1",
     "@supabase/supabase-js": "^1.35.7",
     "@trycourier/courier": "^3.15.0",
-    "@web3auth/base": "^2.1.2",
-    "@web3auth/metamask-adapter": "^2.1.2",
-    "@web3auth/web3auth": "^2.1.2",
     "classnames": "^2.3.2",
     "dotenv": "^16.0.2",
     "ethers": "^5.7.1",
@@ -32,6 +29,7 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-phone-number-input": "^3.2.11",
+    "siwe": "^2.0.5",
     "usehooks-ts": "^2.7.1",
     "wagmi": "^0.6.7"
   },

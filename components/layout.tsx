@@ -1,6 +1,5 @@
 import Router from "next/router";
-import { ReactElement, useContext, useEffect } from "react";
-import { Web3AuthContext } from "../lib/web3auth";
+import { ReactElement } from "react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import { Blocks } from "./blocks";
 
@@ -11,13 +10,10 @@ export default function Layout({
   children: ReactElement;
   user: null | any;
 }) {
-  const web3auth = useContext(Web3AuthContext);
-
   const logout = async () => {
     await fetch("/api/logout", {
       method: "POST",
     });
-    await web3auth?.logout();
     await Router.push("/");
   };
 
@@ -36,7 +32,6 @@ export default function Layout({
         {user && (
           <button
             onClick={logout}
-            disabled={!web3auth}
             className="bg-dark-kinda border border-dark-almost rounded font-semibold px-2 py-1 text-sm flex items-center gap-1 btn"
           >
             <ArrowRightOnRectangleIcon width="1em" height="1em" />

@@ -8,9 +8,9 @@ import {
 declare module "iron-session" {
   interface IronSessionData {
     user?: {
-      token: string;
       uid: string;
     };
+    nonce?: string;
   }
 }
 

@@ -1,23 +1,19 @@
 import { withSessionRoute } from "../../lib/iron";
-import * as jose from "jose";
+import { SiweMessage } from "siwe";
 
 export default withSessionRoute(async function (req, res) {
   if (req.method !== "POST") return res.status(405).end();
   try {
-    const jwks = jose.createRemoteJWKSet(
-      new URL("https://authjs.web3auth.io/jwks")
-    );
-    const token = req.body.token;
-    const payload: any = (
-      await jose.jwtVerify(token, jwks, {
-        algorithms: ["ES256"],
-      })
-    ).payload;
+    const { message, signature } = req.body;
+    const siweMessage = new SiweMessage(message);
+    const { data: fields } = await siweMessage.verify(signature);
+
+    if (fields.nonce !== req.session.nonce)
+      return res.status(422).json({ message: "Invalid nonce." });
+
+    await req.session.save();
     req.session.user = {
-      token,
-      uid: `${payload.wallets[0].type}-${
-        payload.wallets[0].address || payload.wallets[0].public_key
-      }`,
+      uid: fields.address,
     };
     await req.session.save();
     res.send({ ok: true });
