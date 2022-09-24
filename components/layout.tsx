@@ -1,15 +1,75 @@
 import Router from "next/router";
-import { ReactElement } from "react";
-import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
+import { ReactElement, useCallback, useState } from "react";
+import {
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 import { Blocks } from "./blocks";
+import toast from "react-hot-toast";
+import { SiweMessage } from "siwe";
+import { useConnect, useSignMessage, useDisconnect } from "wagmi";
+import { handleErrors } from "../lib/fetch";
 
 export default function Layout({
   children,
   user,
 }: {
-  children: ReactElement;
+  children: (login: () => void) => ReactElement;
   user: null | any;
 }) {
+  const {
+    connectors: [connector],
+    connectAsync,
+  } = useConnect();
+  const { signMessageAsync } = useSignMessage();
+  const { disconnectAsync } = useDisconnect();
+
+  const login = useCallback(async () => {
+    if (!connector.ready) return toast.error("MetaMask not installed");
+    try {
+      await toast
+        .promise(
+          disconnectAsync()
+            .then(() =>
+              connectAsync({
+                connector,
+              })
+            )
+            .then(async (e) => {
+              const { nonce } = await fetch("/api/nonce")
+                .then(handleErrors)
+                .then((r) => r.json());
+              const message = new SiweMessage({
+                domain: window.location.host,
+                address: e.account,
+                statement: "Sign in to Moonboard.",
+                uri: window.location.origin,
+                version: "1",
+                chainId: e.chain.id,
+                nonce,
+              });
+              const signature = await signMessageAsync({
+                message: message.prepareMessage(),
+              });
+              return fetch("/api/login", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message, signature }),
+              }).then(handleErrors);
+            }),
+          {
+            loading: "Connecting via MetaMask",
+            success: "MetaMask connected!",
+            error: "Couldn't connect MetaMask",
+          }
+        )
+        .then(() => Router.push("/dashboard"));
+    } catch (e) {
+      console.log(e);
+    }
+  }, [connectAsync, connector, disconnectAsync, signMessageAsync]);
   const logout = async () => {
     await fetch("/api/logout", {
       method: "POST",
@@ -29,7 +89,7 @@ export default function Layout({
           </svg>
           <span className="font-bold">Moonboard</span>
         </div>
-        {user && (
+        {user ? (
           <button
             onClick={logout}
             className="bg-dark-kinda border border-dark-almost rounded font-semibold px-2 py-1 text-sm flex items-center gap-1 btn"
@@ -37,9 +97,17 @@ export default function Layout({
             <ArrowRightOnRectangleIcon width="1em" height="1em" />
             <span>Logout</span>
           </button>
+        ) : (
+          <button
+            onClick={login}
+            className="bg-dark-kinda border border-dark-almost rounded font-semibold px-2 py-1 text-sm flex items-center gap-1 btn"
+          >
+            <ArrowLeftOnRectangleIcon width="1em" height="1em" />
+            <span>Login</span>
+          </button>
         )}
       </nav>
-      <main className="flex-grow flex flex-col">{children}</main>
+      <main className="flex-grow flex flex-col">{children(login)}</main>
       <footer className="p-4 flex justify-between items-center">
         <span className="text-sm text-dark-soft">
           © {new Date().getFullYear()} Moonboard. All Rights Reserved.

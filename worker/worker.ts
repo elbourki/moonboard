@@ -1,3 +1,4 @@
+import "@polkadot/api-augment";
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import {
   EventRecord,
@@ -114,7 +115,7 @@ async function listener(network: keyof typeof endpoints) {
     const allEvents = (await apiAt.query.system.events()) as Vec<EventRecord>;
 
     console.log(`Chain is at block: #${header.number}`);
-    supabase.from<Block>("blocks").upsert([
+    await supabase.from<Block>("blocks").upsert([
       {
         network,
         block: header.number.toNumber(),

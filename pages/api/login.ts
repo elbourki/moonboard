@@ -6,7 +6,7 @@ export default withSessionRoute(async function (req, res) {
   try {
     const { message, signature } = req.body;
     const siweMessage = new SiweMessage(message);
-    const { data: fields } = await siweMessage.verify(signature);
+    const { data: fields } = await siweMessage.verify({ signature });
 
     if (fields.nonce !== req.session.nonce)
       return res.status(422).json({ message: "Invalid nonce." });

@@ -18,7 +18,7 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <Toaster />
       <Layout user={(pageProps as any).user}>
-        <Component {...pageProps} />
+        {(login) => <Component {...pageProps} login={login} />}
       </Layout>
     </WagmiConfig>
   );

@@ -23,11 +23,10 @@ export function Blocks() {
     return () => {
       sub.unsubscribe();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 h-7.5">
       {networks.map((network) =>
         blocks.has(network.id) ? (
           <a
