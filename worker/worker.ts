@@ -34,6 +34,13 @@ const processRecipient = ({ channel, attributes }: Channel): Recipient => {
         profile: "expanded",
       },
     };
+  else if (channel === "push")
+    return {
+      pusherBeams: {
+        userIds: [attributes.user_id],
+        mode: ["web"],
+      },
+    };
   else
     return {
       email: attributes.email,
@@ -74,6 +81,8 @@ const alertSubscribers = async (
       data: {
         title: topic.title(data),
         content: topic.content(data),
+        subscan_link: data.subscan_link,
+        polkassembly_link: data.polkassembly_link,
       },
     },
   });

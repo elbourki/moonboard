@@ -1,9 +1,16 @@
 import ConnectDiscord from "../components/channels/discord";
 import ConnectEmail from "../components/channels/email";
+import ConnectPush from "../components/channels/push";
 import ConnectPhone from "../components/channels/sms";
 import ConnectTelegram from "../components/channels/telegram";
 
 export const channels = [
+  {
+    id: "push",
+    name: "Push notifications",
+    icon: "/channels/push.svg",
+    component: ConnectPush,
+  },
   {
     id: "sms",
     name: "Text messages",
