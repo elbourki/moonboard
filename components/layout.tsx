@@ -1,5 +1,5 @@
 import Router from "next/router";
-import { ReactElement, useCallback, useState } from "react";
+import { ReactElement, useCallback } from "react";
 import {
   ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,

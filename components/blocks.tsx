@@ -31,7 +31,9 @@ export function Blocks() {
         blocks.has(network.id) ? (
           <a
             className="border border-dark-almost rounded text-dark-soft px-2 py-1 text-sm flex items-center gap-1 btn"
-            href={`https://moonbeam.subscan.io/block/${blocks.get(network.id)}`}
+            href={`https://${network.id}.subscan.io/block/${blocks.get(
+              network.id
+            )}`}
             target="_blank"
             rel="noreferrer"
             key={network.id}

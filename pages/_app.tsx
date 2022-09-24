@@ -9,6 +9,7 @@ import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import { WagmiConfig } from "wagmi";
 import { client } from "../lib/wagmi";
+import NextNProgress from "nextjs-progressbar";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -17,6 +18,11 @@ function App({ Component, pageProps }: AppProps) {
         <title>Moonboard - Real-time web3 alerts</title>
       </Head>
       <Toaster />
+      <NextNProgress
+        color="#fff"
+        height={1}
+        options={{ showSpinner: false, trickleSpeed: 100 }}
+      />
       <Layout user={(pageProps as any).user}>
         {(login) => <Component {...pageProps} login={login} />}
       </Layout>
