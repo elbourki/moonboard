@@ -23,7 +23,7 @@ export const Channels = (props: { channels: { channel: string }[] }) => {
         })
           .then(handleErrors)
           .then(() => router.replace(router.asPath.split("#")[0]))
-          .then(() => router.replace(router.asPath)),
+          .then(() => router.replace(router.asPath.split("#")[0])),
         {
           loading: "Linking Discord...",
           success: <b>Discord linked successfully!</b>,
