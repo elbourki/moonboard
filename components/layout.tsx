@@ -108,7 +108,7 @@ export default function Layout({
         )}
       </nav>
       <main className="flex-grow flex flex-col">{children(login)}</main>
-      <footer className="p-4 flex justify-between items-center">
+      <footer className="p-4 flex justify-between items-center flex-col md:flex-row gap-2">
         <span className="text-sm text-dark-soft">
           © {new Date().getFullYear()} Moonboard. All Rights Reserved.
         </span>

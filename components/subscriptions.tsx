@@ -13,7 +13,7 @@ export const Subscriptions = ({ subscriptions }: { subscriptions: ST[] }) => {
       <p className="text-dark-soft font-normal text-sm mt-1 mb-6">
         Choose which events you want to be notified about
       </p>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {subscriptions.map((s) => (
           <Subscription key={s.id} subscription={s} />
         ))}

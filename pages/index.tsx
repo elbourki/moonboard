@@ -4,7 +4,7 @@ import { withSessionSsr } from "../lib/iron";
 
 const Home: NextPage<{ login: () => void }> = ({ login }) => {
   return (
-    <div className="text-center max-w-xl self-center flex-grow flex flex-col justify-center items-center">
+    <div className="text-center max-w-xl self-center flex-grow flex flex-col justify-center items-center p-4">
       <h1 className="text-4xl font-extrabold mb-3">Real-time web3 alerts</h1>
       <p className="text-dark-soft text-lg">
         Monitor on-chain activity for events of interest and get instant alerts
